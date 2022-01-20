@@ -26,5 +26,5 @@ resource "azurerm_storage_container" "container" {
 
 output "storage_account_key" {
   value = azurerm_storage_account.tfstorage.primary_access_key
-  sensitive = false
+  sensitive = true
 }
