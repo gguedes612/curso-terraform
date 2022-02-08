@@ -1,13 +1,13 @@
 #Variaveis globais
 
 variable "tags" {
-  type = string
-  default = 
+  type = map(string)
+  default = {}
   description = "value"
 }
 variable "location" {
   type = string
-  default = 
+  default = "brazilsouth"
   description = "value"
 }
 
@@ -16,8 +16,7 @@ variable "location" {
 
 variable "resource_group_name" {
   type = string
-  default = 
-  description = "value"
+  description = "Nome do resource group"
 }
 
 
@@ -25,14 +24,12 @@ variable "resource_group_name" {
 
 variable "vnet_name" {
   type = string
-  default = 
-  description = "value"
+  description = "Nome para virtual network"
 }
 
 variable "vnet_ip" {
-  type = string
-  default = 
-  description = "value"
+  type = list(string)
+  description = "Lista de endereços IP's para a virtual network"
 }
 
 
@@ -40,14 +37,12 @@ variable "vnet_ip" {
 
 variable "subnet_name" {
   type = string
-  default = 
-  description = "value"
+  description = "Nome para a subnet"
 }
 
 variable "subnet_ip" {
-  type = string
-  default = 
-  description = "value"
+  type = list(string)
+  description = "Prefixos de redes a serem passados para a subnet"
 }
 
 
@@ -55,28 +50,24 @@ variable "subnet_ip" {
 
 variable "interface_name" {
   type = string
-  default = 
-  description = "value"
+  description = "Nome para a interface de rede"
 }
 
 
 #Variaveis para ip da interface de rede
 variable "interface_ip_name" {
   type = string
-  default = 
-  description = "value"
+  description = "Nome para a configuração de IP da interface"
 }
 
 variable "interface_ip_type" {
   type = string
-  default = 
-  description = "value"
+  description = "Tipo de IP privado para a interface (Dynamic ou Static)"
 }
 
 variable "interface_ip_address" {
   type = string
-  default = 
-  description = "value"
+  description = "Endereço IP privado para a interface"
 }
 
 
@@ -84,18 +75,16 @@ variable "interface_ip_address" {
 
 variable "vm_name" {
   type = string
-  default = 
-  description = "value"
+  description = "Nome para a maquina virtual"
 }
 variable "vm_size" {
   type = string
-  default = 
-  description = "value"
+  default = "Standard_F2"
+  description = "SKU usado para a maquina virtual"
 }
 variable "vm_username" {
   type = string
-  default = 
-  description = "value"
+  description = "Nome de usuario para o administrador local"
 }
 
 
@@ -103,34 +92,40 @@ variable "vm_username" {
 
 variable "vm_disk_caching" {
   type = string
-  default = 
-  description = "value"
+  default = "ReadWrite"
+  description = "Tipo de cache a ser usado para o disco (None, ReadOnly, ReadWrite)"
 }
 
 variable "vm_disk_storage_type" {
   type = string
-  default = 
-  description = "value"
+  default = "Standard_LRS"
+  description = "Tipo de conta de armazenamento para o disco"
 }
 
 
 
 #Variaveis para imagem da maquina virtual
 
-variable "vm_image_sku" {
+variable "vm_image_publisher" {
   type = string
-  default = 
-  description = 
+  default = "Canonical"
+  description = ""
 }
 
 variable "vm_image_offer" {
     type = string
-    default = 
-    description = 
+    default = "UbuntuServer"
+    description = "Oferta de imagem"
+}
+
+variable "vm_image_sku" {
+  type = string
+  default = "16.04-LTS"
+  description = "SKU da imagem a ser criada"
 }
 
 variable "vm_image_version" {
   type = string
-  default = 
-  description = 
+  default = "latest"
+  description = "Versão da imagem"
 }
