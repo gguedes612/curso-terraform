@@ -32,6 +32,18 @@ resource "azurerm_subnet" "subnet_minecraft_server" {
   ]
 }
 
+resource "azurerm_public_ip" "public_ip_minecraft_server" {
+  name                    = var.public_ip_name
+  location                = var.location
+  resource_group_name     = var.resource_group_name
+  allocation_method       = var.interface_public_ip_type
+  idle_timeout_in_minutes = 30
+  
+  depends_on = [
+    azurerm_resource_group.rg_minecraft_server
+  ]
+}
+
 resource "azurerm_network_interface" "interface_minecraft_server" {
   name = var.interface_name
   location = var.location
@@ -40,14 +52,16 @@ resource "azurerm_network_interface" "interface_minecraft_server" {
   ip_configuration {
     name = var.interface_ip_name
     subnet_id = azurerm_subnet.subnet_minecraft_server.id
-    private_ip_address_allocation = var.interface_ip_type
-    private_ip_address = var.interface_ip_address
+    private_ip_address_allocation = var.interface_private_ip_type
+    private_ip_address = var.interface_private_ip_address
+    public_ip_address_id = azurerm_public_ip.public_ip_minecraft_server.id
   }
   
   depends_on = [
     azurerm_resource_group.rg_minecraft_server,
     azurerm_virtual_network.vnet_micraft_server,
     azurerm_subnet.subnet_minecraft_server,
+    azurerm_public_ip.public_ip_minecraft_server
   ]
 
 }

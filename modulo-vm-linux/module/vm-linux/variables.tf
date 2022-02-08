@@ -54,24 +54,38 @@ variable "subnet_ip" {
 
 variable "interface_name" {
   type = string
-  description = "Nome para a interface de rede"
+  description = "Nome da interface da maquina virtual"
 }
 
+#Variaveis para ip privado da interface de rede
 
-#Variaveis para ip da interface de rede
 variable "interface_ip_name" {
   type = string
-  description = "Nome para a configuração de IP da interface"
+  description = "Nome da configuração de ip da interface"
 }
 
-variable "interface_ip_type" {
+variable "interface_private_ip_type" {
   type = string
   description = "Tipo de IP privado para a interface (Dynamic ou Static)"
+  default = "Dynamic"
 }
 
-variable "interface_ip_address" {
+variable "interface_public_ip_type" {
+  type = string
+  description = "Tipo de IP public para a interface (Dynamic ou Static)"
+  default = "Dynamic"
+}
+
+variable "interface_private_ip_address" {
   type = string
   description = "Endereço IP privado para a interface"
+  default = "null"
+}
+
+variable "public_ip_name" {
+  type = string
+  description = "Endereço IP privado para a interface"
+  default = "Public_IP_Server"
 }
 
 
