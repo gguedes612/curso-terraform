@@ -14,4 +14,6 @@ module "vm-linux" {
   public_ip_name                = var.public_ip_name
   vm_name                       = var.vm_name
   vm_username                   = var.vm_username
+  dns_domain                    = var.dns_domain
+  dns_registro_name             = var.dns_registro_name
 }

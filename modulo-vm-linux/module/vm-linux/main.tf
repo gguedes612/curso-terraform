@@ -95,3 +95,27 @@ resource "azurerm_linux_virtual_machine" "vm_minecraft_server" {
     azurerm_network_interface.interface_minecraft_server,
   ]
 }
+
+resource "azurerm_dns_zone" "dns_minecraft_server" {
+  name                = var.dns_domain
+  resource_group_name = var.resource_group_name
+
+  depends_on = [
+    azurerm_resource_group.rg_minecraft_server,
+  ]
+}
+
+resource "azurerm_dns_a_record" "dns_registro_minecraft_server" {
+  name                = var.dns_registro_name
+  zone_name           = var.dns_domain
+  resource_group_name = var.resource_group_name
+  ttl                 = var.dns_ttl
+  target_resource_id  = azurerm_public_ip.public_ip_minecraft_server.id
+
+
+  depends_on = [
+    azurerm_resource_group.rg_minecraft_server,
+    azurerm_public_ip.public_ip_minecraft_server,
+    azurerm_dns_zone.dns_minecraft_server
+  ]
+}

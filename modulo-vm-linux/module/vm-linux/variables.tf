@@ -162,3 +162,21 @@ variable "vm_image_version" {
   default = "latest"
   description = "Versão da imagem"
 }
+
+#Variaveis DNS
+
+variable "dns_domain"{
+  type = string
+  description = "Dominio para o DNS"
+}
+
+variable "dns_registro_name" {
+  type = string
+  description = "Nome do registro do servidor"
+}
+
+variable "dns_ttl" {
+  type = number
+  description = "Tempo de vida do registro em segundos"
+  default = 300
+}

@@ -89,3 +89,17 @@ variable "vm_username" {
   description = "Nome de usuario para o administrador local"
   default = "minecraft"
 }
+
+#Variaveis DNS
+
+variable "dns_domain"{
+  type = string
+  description = "Dominio para o DNS"
+  default = "guilhermeguedes.com.br"
+}
+
+variable "dns_registro_name" {
+  type = string
+  description = "Nome do registro do servidor"
+  default = "minecraft"
+}
