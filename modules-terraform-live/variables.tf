@@ -1,5 +1,5 @@
 variable "resource_groups" {
-  type  = any
+  type        = any
   description = "Aqui definimos a estrutura do Resource Groups"
-  default = {}
+  default     = {}
 }
