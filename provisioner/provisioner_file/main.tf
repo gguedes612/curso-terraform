@@ -7,6 +7,9 @@ resource "aws_instance" "web" {
     destination = "/etc/myapp.conf"
   }
   connection {
-    
+    type     = "ssh"
+    user     = "root"
+    password = var.root_password
+    host     = self.public_ip
   }
 }
